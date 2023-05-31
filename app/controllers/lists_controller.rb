@@ -18,8 +18,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    # レコード1件のみ取得するので単数形@list
-    @list = List.find(params[:id])
+    @list = List.find(params[:id]) # レコード1件を取得
   end
 
   def edit
@@ -28,8 +27,14 @@ class ListsController < ApplicationController
   
   def update
     list = List.find(params[:id])
-    list.update(list_params)
-    redirect_to list_path(list.id)  
+    list.update(list_params) # レコードを更新
+    redirect_to list_path(list.id)
+  end
+  
+  def destroy
+    list = List.find(params[:id])
+    list.destroy  # レコードを削除
+    redirect_to '/lists'  #投稿一覧画面/listsへリダイレクト
   end
   
   private
