@@ -9,7 +9,7 @@ class ListsController < ApplicationController
     # データをデータベースに保存するためのsaveメソッド実行
     list.save
     # トップ画面へリダイレクト
-    redirect_to '/top'
+    redirect_to list_path(list.id)
   end
 
 
@@ -18,6 +18,8 @@ class ListsController < ApplicationController
   end
 
   def show
+    # レコード1件のみ取得するので単数形@list
+    @list = List.find(params[:id])
   end
 
   def edit
